@@ -11,12 +11,11 @@ index.html Styles
 **************************/
 body {
 	background-color: black;
-
 }
 
-/** {
+* {
 	outline: red 1px solid;
-}*/
+}
 
 /****************************
   Main-Container Attributes
