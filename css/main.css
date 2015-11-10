@@ -13,9 +13,9 @@ body {
 	background-color: black;
 }
 
-* {
+/** {
 	outline: red 1px solid;
-}
+}*/
 
 /****************************
   Main-Container Attributes
@@ -37,17 +37,18 @@ body {
 .ryu-container {
 	width: 659px;
 	height: 494px;
+	float: left;
 }
 
 
 /*********************************
   ALL ryu image Attributes
 *********************************/
-.ryu-still, .ryu-ready, .ryu-throwing {
+.ryu-still, .ryu-ready, .ryu-throwing, .ryu-cool{
 	width: 659px;
 	height: 494px;
 }
-.ryu-ready, .ryu-throwing {
+.ryu-ready, .ryu-throwing, .ryu-cool {
 	display: none;
 }
 
@@ -92,3 +93,28 @@ body {
 	display: none;
 }
 
+
+/*********************************
+  "How To" instructional text
+*********************************/
+.how-to-text {
+	position: absolute;
+    left: 650px;
+    height: 425px;
+    width: 600px;
+    padding-top: 45px;
+    padding-left: 100px;
+    display: block;
+}
+
+.how-to-text p {
+	width: 50%;
+	font-family: "Comic Sans MS", "Comic Sans";
+	font-size: 33px;
+	line-height: 45px;
+	display: block;
+}
+
+.how-to-text p+p {
+	padding-left: 150px;
+}
