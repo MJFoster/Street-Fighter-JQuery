@@ -4,33 +4,68 @@
 // *************************************************
 $(document).ready(function() {
 	// .show() & .hide() Multiple screens display w/audio
-	// CODE NOT YET IMPLEMENTED ...
+	introSF();
+	playSFGame();
+});  // END OF $(document).ready()
 
-	// Using mouseleave(), change pose to "ready"
+
+function playSFSound() {
+  $('#SF-theme-song')[0].volume = 0.3;
+  $('#SF-theme-song')[0].play();
+}  // END OF PlaySFSound()
+
+
+function playCool() {
+	$('#SF-theme-song')[0].pause();
+	$('#cool-song')[0].play();
+}  // END OF playCool()
+
+
+// Play Hadouken audio
+function playHadouken() {
+  $('#hadouken-sound')[0].volume = 0.5;
+  $('#hadouken-sound')[0].load();
+  $('#hadouken-sound')[0].play();
+}  // END OF playHadouken()
+
+
+function introSF() {
+	playSFSound();
+	// Fade In/Out intro screens
+	$('.sf-logo').fadeIn(3500, function() {
+	    $(this).fadeOut(1000, function() {
+	      $('.brought-by').fadeIn(1500, function() {
+	      	$(this).fadeOut(1000, function() {
+	      		$('.jquery-logo').fadeIn(1500, function() {
+	      			$(this).fadeOut(1500, function() {
+	      				$('.how-to-text').fadeIn(1000);
+      				});
+  				});
+			});
+		});
+    });
+});
+}  // END OF introSF()
+
+
+
+function playSFGame() {
+	// All methods bound to '.ryu-container' are 'chained' together below!
+	// Change pose to "ready"
 	$('.ryu-container').mouseenter(function() {
 		$('.ryu-still').hide();
 		$('.ryu-ready').show();
 	})
 
-	// Using mouseleave(), change pose to "still"
-	.mouseleave(function() {
+	// Change pose to "still"
+	.mouseleave(function() {  // Chained event handler
 		$('.ryu-throwing').hide();
 		$('.ryu-ready').hide();
 		$('.ryu-still').show();
-	});
+	})
 
-
-	// Play audio for Hadouken
-	function playHadouken () {
-	  $('#hadouken-sound')[0].volume = 0.5;
-	  $('#hadouken-sound')[0].load();
-	  $('#hadouken-sound')[0].play();
-	}
-
-
-	// Upon mousedown(), play audio & throw hadouken
-	$('.ryu-container').mousedown(function () {
-		
+	// Play audio & throw hadouken
+	.mousedown(function() {  // Chained event handler
 		// Play audio
 		playHadouken();
 
@@ -38,42 +73,39 @@ $(document).ready(function() {
 		$('.ryu-ready').hide();
 		$('.ryu-throwing').show();
 
-		
-
-		$('.hadouken').append();
-		// To animate the hadouken itself,
-		// CHAIN show(), animate(), & finish() methods!
+		$('.hadouken').append();    // To animates the hadouken itself using 'chained' methods!
 		$('.hadouken').show().finish().animate(
 			{left: "1020px"},
 			500,
-			function() {
+			function() {  // function to run at animation completion
 				$(this).hide();  // hide() 'this' selector
 				$(this).css("left", "620px");  // style 'this' selector back to start position.
 			});
-	});
+	})  // END OF mousedown()
 
-
-	// Upon mouseup(), start over
-	$('.ryu-container').mouseup(function () {
+	// Change pose to 'ready'
+	.mouseup(function() {
 		$('.ryu-throwing').hide();
 		$('.ryu-ready').show();
 	});
-});
 
-// Watch for keydown() of 'x' key, then poseCool()
-// $(document).keydown(function(down-event) {
-// 	console.log(down-event, down-event.which);
-// 	if(down-event.which == 88) {
-// 		$('.ryu-still').hide();
-// 		$('.ryu-ready').hide();
-// 		$('.ryu-throwing').hide();
-// 		$('.ryu-cool').show();
-// 	};
-// });
+	// Watch for keydown() of 'x' key, then playCool() + pose 'cool'
+	// Audio changes.  Both 'key' events are chained and bound to 'document' now!
+	$(document).keydown(function(e) {
+		if(e.keyCode == 88) {
+			playCool();
+			$('.ryu-still').hide();
+			$('.ryu-ready').hide();
+			$('.ryu-throwing').hide();
+			$('.ryu-cool').show();
+		};
+	})
 
-
-// Watch for keyup(), then poseCool()
-// $(document).keyup(function(up-event) {
-// 	$('.ryu-cool').hide();
-// 	$('.ryu-still').show();
-// });
+	// Watch for keyup(), then pose still.
+	.keyup(function(e) {
+		$('#cool-song')[0].pause();
+      	$('#cool-song')[0].load();
+		$('.ryu-cool').hide();
+		$('.ryu-still').show();
+	});
+}  // END OF playSFGame()
