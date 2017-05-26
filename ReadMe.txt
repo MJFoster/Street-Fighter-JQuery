@@ -1,6 +1,8 @@
 # PROJECT NAME:  Street-Fighter-JQuery
 # CONTRIBUTOR(S):  MaryJo Foster
 # 
+# PREVIEW HERE: http://mjfoster.github.io/StreetFighter-Example-Event-Handler/
+#
 # Requirements
 # 	Simulate the 'Street Fighter' themed interactive webpage.
 #	Demonstrate the following features
@@ -24,7 +26,7 @@ HTML & CSS SPECS
 	- "Brought to you by" text displays "slowly"
 	- "JQuery" logo displays "slowly"
 	- Fighter image and instructional text displays
-	- MOUSE event handlers wait ….Upon each event, do the following:
+	- MOUSE event handlers wait â€¦.Upon each event, do the following:
 	      * Mouse flys over fighter image
 	            + .hide() current pose
 	            + .show() 'ready' pose
